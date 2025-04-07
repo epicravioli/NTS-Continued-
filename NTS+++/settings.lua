@@ -5,10 +5,12 @@ local general_spawners = {"relics", "orbs", "dragonfruit", "C H E E S E"}
 local misc_spawners = {"perm wisps", "keys x5", "coins x5", "new hearts"}
 local boss_spawners = {"King Slime", "Deranged Adventurer", "Book", "The Beast"}
 local test_spawners = {"test enemy (Fred)", "Sphere"}
+custom_spawners = {}
+NTS = {}
 local nodmg = false
 
 function onDungeonGenerated()
-    GiveRelic("NTS-Spawner")
+    NTS.GiveRelic("NTS-Spawner")
 end
 
 function onModSettingsInit(settingsObject)
@@ -29,12 +31,26 @@ function onModSettingsInit(settingsObject)
     settingsObject.Buttons("<color=#00FF00>Enemys</color>", "settingsNamespawnercustomskeletonCallback", 1, {"skeleton", "slime"})
     settingsObject.Header("<color=#FF0000>RELICS+</color>")
     settingsObject.Buttons("<color=#00FF00>...</color>", "settingsNamespawnercustomrelicCallback", 1, {"Pit Friend", "Ginseng Root", "Heart Container"})
+    settingsObject.Header("<color=#00FF00>Custom</color>")
+    for i, object in ipairs(custom_spawners) do
+        settingsObject.Buttons("<color=#00FF00>...</color>", object[2], 1, {object[3]})
+    end
 end
 
-function GiveRelic(id)
+function NTS.GiveRelic(id)
     pickup = game.itemInterpreter.GetPickupById(id)
     pickup.Execute("onPickup", nil)
     pickup.OnPickup()
+end
+
+function NTS.AddCustomSpawner(ItemID, CallBack, ButtonName)
+    local item = {}
+    table.insert(item, 1, ItemID) -- [1]
+    table.insert(item, 2, CallBack) -- [2]
+    table.insert(item, 3, ButtonName) -- [3]
+    table.insert(item, 4, #custom_spawners + 1) -- [4]
+
+    table.insert(custom_spawners, #custom_spawners + 1, item)
 end
 
 function settingsNamespawnerenemysCallback(buttonIndex)

@@ -74,52 +74,60 @@ function onPickupActivate()
 	end
 
 	if loadValue("NTS-Spawner-Mode") == 9 then
-		game.spawnObjectNetwork("enemy_og_wight", game.playerController.rightHand.transform.position)
+		game.spawnObjectNetwork("companion_wisp_invincible", game.playerController.rightHand.transform.position)
 		return
 	end
 
 	if loadValue("NTS-Spawner-Mode") == 10 then
-		game.spawnObjectNetwork("enemy_og_wight", game.playerController.rightHand.transform.position)
+		game.spawnObjectNetwork("item_key", game.playerController.rightHand.transform.position)
+		game.spawnObjectNetwork("item_key", game.playerController.rightHand.transform.position)
+		game.spawnObjectNetwork("item_key", game.playerController.rightHand.transform.position)
+		game.spawnObjectNetwork("item_key", game.playerController.rightHand.transform.position)
+		game.spawnObjectNetwork("item_key", game.playerController.rightHand.transform.position)
 		return
 	end
 
 	if loadValue("NTS-Spawner-Mode") == 11 then
-		game.spawnObjectNetwork("enemy_og_wight", game.playerController.rightHand.transform.position)
+		game.spawnObjectNetwork("item_coin", game.playerController.rightHand.transform.position)
+		game.spawnObjectNetwork("item_coin", game.playerController.rightHand.transform.position)
+		game.spawnObjectNetwork("item_coin", game.playerController.rightHand.transform.position)
+		game.spawnObjectNetwork("item_coin", game.playerController.rightHand.transform.position)
+		game.spawnObjectNetwork("item_coin", game.playerController.rightHand.transform.position)
 		return
 	end
 
 	if loadValue("NTS-Spawner-Mode") == 12 then
-		game.spawnObjectNetwork("enemy_og_wight", game.playerController.rightHand.transform.position)
+		game.spawnObjectNetwork("item_ethereal_heart", game.playerController.rightHand.transform.position)
 		return
 	end
 
 	if loadValue("NTS-Spawner-Mode") == 13 then
-		game.spawnObjectNetwork("enemy_og_wight", game.playerController.rightHand.transform.position)
+		game.spawnObjectNetwork("boss_king_slime", game.playerController.rightHand.transform.position)
 		return
 	end
 
 	if loadValue("NTS-Spawner-Mode") == 14 then
-		game.spawnObjectNetwork("enemy_og_wight", game.playerController.rightHand.transform.position)
+		game.spawnObjectNetwork("boss_deranged_adventurer", game.playerController.rightHand.transform.position)
 		return
 	end
 
 	if loadValue("NTS-Spawner-Mode") == 15 then
-		game.spawnObjectNetwork("enemy_og_wight", game.playerController.rightHand.transform.position)
+		game.spawnObjectNetwork("boss_book", game.playerController.rightHand.transform.position)
 		return
 	end
 
 	if loadValue("NTS-Spawner-Mode") == 16 then
-		game.spawnObjectNetwork("enemy_og_wight", game.playerController.rightHand.transform.position)
+		game.spawnObjectNetwork("boss_the_beast", game.playerController.rightHand.transform.position)
 		return
 	end
 
 	if loadValue("NTS-Spawner-Mode") == 17 then
-		game.spawnObjectNetwork("enemy_og_wight", game.playerController.rightHand.transform.position)
+		game.spawnObjectNetwork("enemy_test", game.playerController.rightHand.transform.position)
 		return
 	end
 
 	if loadValue("NTS-Spawner-Mode") == 18 then
-		game.spawnObjectNetwork("enemy_og_wight", game.playerController.rightHand.transform.position)
+		game.spawnObjectNetwork("test_sphere", game.playerController.rightHand.transform.position)
 		return
 	end
 
@@ -199,6 +207,12 @@ function onPickupActivate()
 		local itembase = getComponent(orb, "ItemUpgrade")
 		itembase.forceSpawn = "erthu_chrwa_charm_of_a_first_love"
 		return
+	end
+
+	for i, object in ipairs(custom_spawners) do
+		if loadValue("NTS-Spawner-ModeCS") == object[4] then
+			game.SpawnObjectNetwork(object[1], game.playerController.rightHand.transform.position)
+		end
 	end
 
 	debugLog("NTS-Error: mode not found")
